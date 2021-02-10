@@ -13,8 +13,13 @@ const Cell = ({ cellValue, cellId, currentPlayer, submitAnswer }) => {
     } 
   }
 
+  const cellPlayerClass = !cellValue && currentPlayer === 'X' ? 'hover-x' : !cellValue && currentPlayer === 'O' ? 'hover-o' : ''
+
   return (
     <div className="cell" onClick={submitLetter}>
+      <div className={!cellValue ? cellPlayerClass : 'disabled'}>
+        {currentPlayer}
+      </div>
       {cellValue}
     </div>
   )

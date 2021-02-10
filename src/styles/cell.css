@@ -1,8 +1,36 @@
 .cell {
+  position: relative;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15rem;
   font-family: sans-serif;
+}
+
+.cell:hover {
+  cursor: pointer;
+}
+
+.hover-x,
+.hover-o {
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.disabled {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cell:hover .hover-x,
+.cell:hover .hover-o {
+  visibility: visible;
+  color: rgba(255, 0, 0, 0.308);
 }
