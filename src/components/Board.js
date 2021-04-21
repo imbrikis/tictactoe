@@ -12,7 +12,6 @@ const Board = ({
   const [isGameOver, setIsGameOver] = useState(false)
 
   const resetBoard = () => {
-    console.log('resetting board')
     setGameData([0, 0, 0, 0, 0, 0, 0, 0, 0])
     setIsGameOver(false)
     boardHasBeenReset()
@@ -23,7 +22,6 @@ const Board = ({
   const declareWinner = (winner) => {
     setIsGameOver(true)
     gameIsOver()
-    console.log(`${winner} wins`)
   }
 
   const submitAnswer = (letter, cell) => {
