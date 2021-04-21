@@ -7,6 +7,7 @@ const Board = ({
   gameIsOver,
   reset,
   boardHasBeenReset,
+  isTiedGame,
 }) => {
   const [gameData, setGameData] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
   const [isGameOver, setIsGameOver] = useState(false)
@@ -19,7 +20,8 @@ const Board = ({
 
   reset && isGameOver && resetBoard()
 
-  const declareWinner = (winner) => {
+  const declareWinner = (tiedGame) => {
+    tiedGame && isTiedGame()
     setIsGameOver(true)
     gameIsOver()
   }
@@ -38,7 +40,7 @@ const Board = ({
       (gameData[0] === 'X' && gameData[4] === 'X' && gameData[8] === 'X') ||
       (gameData[2] === 'X' && gameData[4] === 'X' && gameData[6] === 'X')
     ) {
-      declareWinner('X')
+      declareWinner(false)
       return
     } else if (
       (gameData[0] === 'O' && gameData[3] === 'O' && gameData[6] === 'O') ||
@@ -50,8 +52,20 @@ const Board = ({
       (gameData[0] === 'O' && gameData[4] === 'O' && gameData[8] === 'O') ||
       (gameData[2] === 'O' && gameData[4] === 'O' && gameData[6] === 'O')
     ) {
-      declareWinner('O')
+      declareWinner(false)
       return
+    } else if (
+      (gameData[0] === 'X' || gameData[0] === 'O') &&
+      (gameData[1] === 'X' || gameData[1] === 'O') &&
+      (gameData[2] === 'X' || gameData[2] === 'O') &&
+      (gameData[3] === 'X' || gameData[3] === 'O') &&
+      (gameData[4] === 'X' || gameData[4] === 'O') &&
+      (gameData[5] === 'X' || gameData[5] === 'O') &&
+      (gameData[6] === 'X' || gameData[6] === 'O') &&
+      (gameData[7] === 'X' || gameData[7] === 'O') &&
+      (gameData[8] === 'X' || gameData[8] === 'O')
+    ) {
+      declareWinner(true)
     }
 
     switchPlayer()

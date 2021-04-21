@@ -5,6 +5,11 @@ const App = () => {
   const [currentPlayer, setCurrentPlayer] = useState('X')
   const [isGameOver, setIsGameOver] = useState(false)
   const [reset, setReset] = useState(false)
+  const [tiedGame, setTiedGame] = useState(false)
+
+  const isTiedGame = () => {
+    setTiedGame(true)
+  }
 
   const switchPlayer = () => {
     currentPlayer === 'X' ? setCurrentPlayer('O') : setCurrentPlayer('X')
@@ -27,7 +32,11 @@ const App = () => {
   return (
     <div className='app-container'>
       {isGameOver ? (
-        <h1>Player {currentPlayer} Has Won!</h1>
+        tiedGame ? (
+          <h1>The game has been tied!!!</h1>
+        ) : (
+          <h1>Player {currentPlayer} Has Won!</h1>
+        )
       ) : (
         <h1>Player {currentPlayer}'s Turn</h1>
       )}
@@ -38,6 +47,7 @@ const App = () => {
         gameIsOver={gameIsOver}
         reset={reset}
         boardHasBeenReset={boardHasBeenReset}
+        isTiedGame={isTiedGame}
       />
       {isGameOver && (
         <button className='reset-btn' onClick={resetGame}>
