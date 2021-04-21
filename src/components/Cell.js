@@ -1,7 +1,12 @@
 import React from 'react'
 
-const Cell = ({ cellValue, cellId, currentPlayer, submitAnswer }) => {
-
+const Cell = ({
+  cellValue,
+  cellId,
+  currentPlayer,
+  submitAnswer,
+  isGameOver,
+}) => {
   const submitLetter = () => {
     if (!cellValue) {
       if (currentPlayer === 'X') {
@@ -10,19 +15,33 @@ const Cell = ({ cellValue, cellId, currentPlayer, submitAnswer }) => {
       if (currentPlayer === 'O') {
         submitAnswer(currentPlayer, cellId)
       }
-    } 
+    }
   }
 
-  const cellPlayerClass = !cellValue && currentPlayer === 'X' ? 'hover-x' : !cellValue && currentPlayer === 'O' ? 'hover-o' : ''
+  const cellPlayerClass =
+    !cellValue && currentPlayer === 'X'
+      ? 'hover-x'
+      : !cellValue && currentPlayer === 'O'
+      ? 'hover-o'
+      : ''
 
-  return (
-    <div className="cell" onClick={submitLetter}>
-      <div className={!cellValue ? cellPlayerClass : 'disabled'}>
-        {currentPlayer}
+  if (isGameOver) {
+    return (
+      <div className='cell no-hover'>
+        <div className='disabled'></div>
+        {cellValue}
       </div>
-      {cellValue}
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className='cell' onClick={submitLetter}>
+        <div className={!cellValue ? cellPlayerClass : 'disabled'}>
+          {currentPlayer}
+        </div>
+        {cellValue}
+      </div>
+    )
+  }
 }
 
 export default Cell
