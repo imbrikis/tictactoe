@@ -18,7 +18,7 @@ const Board = ({
     boardHasBeenReset()
   }
 
-  reset && resetBoard()
+  reset && isGameOver && resetBoard()
 
   const declareWinner = (winner) => {
     setIsGameOver(true)

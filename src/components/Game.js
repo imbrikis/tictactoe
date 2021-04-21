@@ -17,11 +17,11 @@ const App = () => {
   const resetGame = () => {
     switchPlayer()
     setIsGameOver(false)
-    setReset(false)
+    setReset(true)
   }
 
   const boardHasBeenReset = () => {
-    setReset(true)
+    setReset(false)
   }
 
   return (
